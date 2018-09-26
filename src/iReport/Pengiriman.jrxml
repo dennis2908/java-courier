@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pengiriman" language="groovy" pageWidth="849" pageHeight="636" orientation="Landscape" columnWidth="809" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="234"/>
+	<subDataset name="dataset1"/>
+	<parameter name="paramAWB" class="java.lang.String"/>
+	<parameter name="paketReg" class="java.lang.String"/>
+	<parameter name="paketOK" class="java.lang.String"/>
+	<parameter name="paketYes" class="java.lang.String"/>
+	<parameter name="cash" class="java.lang.String"/>
+	<parameter name="dokumen" class="java.lang.String"/>
+	<parameter name="barang" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     Pengirim.`Nama` AS Pengirim_Nama,
+     Pengirim.`NamaPT` AS Pengirim_NamaPT,
+     Pengirim.`Alamat` AS Pengirim_Alamat,
+     Pengirim.`Kota` AS Pengirim_Kota,
+     Pengirim.`Propinsi` AS Pengirim_Propinsi,
+     Pengirim.`KodePos` AS Pengirim_KodePos,
+     Pengirim.`Negara` AS Pengirim_Negara,
+     Pengirim.`Telepon` AS Pengirim_Telepon,
+     Pengiriman.`NoAWB` AS Pengiriman_NoAWB,
+     Pengiriman.`Nama` AS Pengiriman_Nama,
+     Pengiriman.`NamaPT` AS Pengiriman_NamaPT,
+     Pengiriman.`Alamat` AS Pengiriman_Alamat,
+     Pengiriman.`Kode` AS Pengiriman_Kode,
+     Pengiriman.`KodePos` AS Pengiriman_KodePos,
+     Pengiriman.`Negara` AS Pengiriman_Negara,
+     Pengiriman.`Telepon` AS Pengiriman_Telepon,
+     Pengiriman.`Paket` AS Pengiriman_Paket,
+     Pengiriman.`TglKirim` AS Pengiriman_TglKirim,
+     Pengiriman.`Panjang` AS Pengiriman_Panjang,
+     Pengiriman.`Lebar` AS Pengiriman_Lebar,
+     Pengiriman.`Tinggi` AS Pengiriman_Tinggi,
+     Pengiriman.`Harga` AS Pengiriman_Harga,
+     Pengiriman.`NamaBarang` AS Pengiriman_NamaBarang,
+     Pengiriman.`Jenis` AS Pengiriman_Jenis,
+     Pengiriman.`Koli` AS Pengiriman_Koli,
+     Pengiriman.`Pieces` AS Pengiriman_Pieces,
+     Pengiriman.`Berat` AS Pengiriman_Berat,
+     Pengiriman.`Pembayaran` AS Pengiriman_Pembayaran,
+     Pengiriman.`Packaging` AS Pengiriman_Packaging,
+     Pengiriman.`totalAsuransi` AS Pengiriman_totalAsuransi,
+     Pengiriman.`Asuransi` AS Pengiriman_Asuransi,
+     Pengiriman.`AdminAsuransi` AS Pengiriman_AdminAsuransi,
+     Wilayah.`Kotamadya` AS Wilayah_Kotamadya,
+     Wilayah.`Propinsi` AS Wilayah_Propinsi,
+     RegulerServ.`ZonaA` AS RegulerServ_ZonaA,
+     RegulerServ.`ZonaB` AS RegulerServ_ZonaB,
+     RegulerServ.`ZonaC` AS RegulerServ_ZonaC,
+     RegulerServ.`ZonaD` AS RegulerServ_ZonaD,
+     OKServ.`ZonaA` AS OKServ_ZonaA,
+     OKServ.`ZonaC` AS OKServ_ZonaC,
+     OKServ.`ZonaB` AS OKServ_ZonaB,
+     YesServ.`TarifYes` AS YesServ_TarifYes
+FROM
+     `Pengirim` Pengirim INNER JOIN `Pengiriman` Pengiriman ON Pengirim.`NoPengirim` = Pengiriman.`NoPengirim`
+     INNER JOIN `Wilayah` Wilayah ON Pengiriman.`Kode` = Wilayah.`Kode`
+     LEFT OUTER JOIN `RegulerServ` RegulerServ ON Wilayah.`Kode` = RegulerServ.`Kode`
+     LEFT OUTER JOIN `YesServ` YesServ ON Wilayah.`Kode` = YesServ.`Kode`
+     LEFT OUTER JOIN `OKServ` OKServ ON Wilayah.`Kode` = OKServ.`Kode`
+WHERE
+     NoAWB = $P{paramAWB}]]>
+	</queryString>
+	<field name="Pengirim_Nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengirim_NamaPT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengirim_Alamat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengirim_Kota" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengirim_Propinsi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengirim_KodePos" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengirim_Negara" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengirim_Telepon" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_NoAWB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_NamaPT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Alamat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Kode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_KodePos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Negara" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Telepon" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Paket" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_TglKirim" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Panjang" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Lebar" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Tinggi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Harga" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_NamaBarang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Jenis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Koli" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Pieces" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Berat" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Pembayaran" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Packaging" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_totalAsuransi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Asuransi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_AdminAsuransi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Wilayah_Kotamadya" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Wilayah_Propinsi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RegulerServ_ZonaA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RegulerServ_ZonaB" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RegulerServ_ZonaC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RegulerServ_ZonaD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OKServ_ZonaA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OKServ_ZonaC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OKServ_ZonaB" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="YesServ_TarifYes" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="totalHarga" class="java.lang.Integer" resetType="Column">
+		<variableExpression><![CDATA[($F{Pengiriman_Harga} * $F{Pengiriman_Berat}) + $F{Pengiriman_Packaging} + $F{Pengiriman_totalAsuransi}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="53" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle>
+				<reportElement x="169" y="0" width="161" height="61"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="117" height="61"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="169" y="0" width="161" height="16"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="45" width="117" height="16"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="117" height="15"/>
+				<textElement/>
+				<text><![CDATA[Account Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="45" width="117" height="16"/>
+				<textElement/>
+				<text><![CDATA[Customer Reference]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="0" width="117" height="15"/>
+				<textElement/>
+				<text><![CDATA[Origin]]></text>
+			</staticText>
+			<line>
+				<reportElement x="117" y="0" width="52" height="1"/>
+			</line>
+			<line>
+				<reportElement x="117" y="60" width="52" height="1"/>
+			</line>
+			<rectangle>
+				<reportElement x="169" y="46" width="161" height="15"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="169" y="45" width="117" height="16"/>
+				<textElement/>
+				<text><![CDATA[Destination]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="330" y="0" width="322" height="61"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="330" y="0" width="117" height="15"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="330" y="0" width="117" height="16"/>
+				<textElement/>
+				<text><![CDATA[Branch / Agent]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="330" y="46" width="100" height="14"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="330" y="45" width="100" height="15"/>
+				<textElement/>
+				<text><![CDATA[AirWaybill Number]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="230" y="45" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Kode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="46" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_NoAWB}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="652" y="0" width="157" height="61"/>
+			</rectangle>
+			<line>
+				<reportElement x="653" y="16" width="156" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="702" y="26" width="100" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Intracity]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="652" y="25" width="28" height="20"/>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="273" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="330" height="17"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Shipper ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="17" width="330" height="89"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[Company Name : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[Address : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="52" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[City : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="68" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[Province / Region : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="84" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[Name : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="52" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[Postal/Zip Code : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="68" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[Country : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="84" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[Telp No : ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="106" width="330" height="13"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="106" width="132" height="13"/>
+				<textElement/>
+				<text><![CDATA[Description of Shipment]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="119" width="330" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="139" width="330" height="13"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="139" width="132" height="13"/>
+				<textElement/>
+				<text><![CDATA[Delivery Instructions]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="152" width="157" height="31"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="157" y="152" width="173" height="31"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="198" y="139" width="132" height="13"/>
+				<textElement/>
+				<text><![CDATA[             Payment Mode]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="183" width="330" height="13"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="183" width="132" height="13"/>
+				<textElement/>
+				<text><![CDATA[Charges]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="196" width="330" height="77"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="196" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[Tariff ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="212" width="69" height="13"/>
+				<textElement/>
+				<text><![CDATA[Other Fee : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="225" width="100" height="13"/>
+				<textElement/>
+				<text><![CDATA[Insurance : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="238" width="100" height="13"/>
+				<textElement/>
+				<text><![CDATA[Insurance Adm : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="251" width="100" height="13"/>
+				<textElement/>
+				<text><![CDATA[Amount : ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="330" y="0" width="322" height="17"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="330" y="17" width="322" height="89"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="330" y="0" width="100" height="15"/>
+				<textElement/>
+				<text><![CDATA[Receiver]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="87" width="92" height="16"/>
+				<textElement/>
+				<text><![CDATA[Attention : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="55" width="92" height="16"/>
+				<textElement/>
+				<text><![CDATA[City : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="487" y="87" width="92" height="16"/>
+				<textElement/>
+				<text><![CDATA[Telp No : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="23" width="92" height="16"/>
+				<textElement/>
+				<text><![CDATA[Company Name : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="39" width="92" height="16"/>
+				<textElement/>
+				<text><![CDATA[Address : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="71" width="92" height="16"/>
+				<textElement/>
+				<text><![CDATA[Province / Region : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="487" y="71" width="92" height="16"/>
+				<textElement/>
+				<text><![CDATA[Country : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="487" y="55" width="92" height="16"/>
+				<textElement/>
+				<text><![CDATA[Postal/Zip Code : ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="330" y="106" width="322" height="13"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="330" y="106" width="132" height="13"/>
+				<textElement/>
+				<text><![CDATA[Dimensions]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="330" y="119" width="322" height="64"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="330" y="119" width="322" height="33"/>
+			</rectangle>
+			<line>
+				<reportElement x="391" y="119" width="1" height="64"/>
+			</line>
+			<line>
+				<reportElement x="421" y="119" width="1" height="64"/>
+			</line>
+			<line>
+				<reportElement x="461" y="119" width="1" height="64"/>
+			</line>
+			<line>
+				<reportElement x="421" y="138" width="197" height="1"/>
+			</line>
+			<line>
+				<reportElement x="618" y="119" width="1" height="64"/>
+			</line>
+			<line>
+				<reportElement x="505" y="139" width="1" height="44"/>
+			</line>
+			<line>
+				<reportElement x="561" y="139" width="1" height="44"/>
+			</line>
+			<staticText>
+				<reportElement x="330" y="125" width="61" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="125" width="29" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Pieces]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="125" width="40" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Weights]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="422" y="138" width="29" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Kgs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="462" y="139" width="29" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Length]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="506" y="139" width="55" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[     Width]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="579" y="139" width="29" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Height]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="618" y="119" width="29" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Weight]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="619" y="132" width="33" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Vol Kgs]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="100" y="212" width="98" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Pengiriman_Packaging}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="100" y="225" width="98" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Pengiriman_totalAsuransi}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="100" y="238" width="98" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Pengiriman_AdminAsuransi}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="100" y="183" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Pengiriman_Harga}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+				<reportElement x="100" y="251" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalHarga}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="152" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Pengiriman_Berat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="152" width="43" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Pengiriman_Panjang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="508" y="152" width="54" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Pengiriman_Lebar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="562" y="152" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Pengiriman_Tinggi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="619" y="152" width="33" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Pengiriman_Berat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="20" width="100" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_NamaPT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="36" width="100" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="55" width="57" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Kota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="67" width="59" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Propinsi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="257" y="51" width="73" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_KodePos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="257" y="68" width="73" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Negara}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="257" y="84" width="73" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Telepon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="3" width="100" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="20" width="100" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_NamaPT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="36" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="55" width="65" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Wilayah_Kotamadya}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="71" width="66" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Wilayah_Propinsi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="579" y="55" width="73" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_KodePos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="579" y="71" width="73" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Negara}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="579" y="87" width="73" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Telepon}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="329" y="153" width="62" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_NamaBarang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="152" width="29" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Pengiriman_Pieces}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="69" y="119" width="100" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_NamaBarang}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="330" y="183" width="149" height="90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="479" y="183" width="173" height="90"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="330" y="183" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Time : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="212" width="100" height="13"/>
+				<textElement/>
+				<text><![CDATA[Date : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="251" width="54" height="20"/>
+				<textElement/>
+				<text><![CDATA[ Name : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="479" y="183" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Time : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="479" y="212" width="100" height="13"/>
+				<textElement/>
+				<text><![CDATA[Date : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="561" y="251" width="92" height="20"/>
+				<textElement/>
+				<text><![CDATA[            Name : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="183" width="100" height="13"/>
+				<textElement/>
+				<text><![CDATA[Shipper Signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="196" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Time : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="238" width="46" height="13"/>
+				<textElement/>
+				<text><![CDATA[Date : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="253" width="49" height="20"/>
+				<textElement/>
+				<text><![CDATA[ Name : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="100" width="100" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Reguler Service]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="703" y="118" width="100" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[OKE Service]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="78" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA['YES' Guarantee Service]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="51" width="100" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Super Speed Service]]></text>
+			</staticText>
+			<line>
+				<reportElement x="652" y="17" width="157" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="653" y="3" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Indonesia Domestic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="30" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Diplomat Service]]></text>
+			</staticText>
+			<line>
+				<reportElement x="652" y="138" width="158" height="1"/>
+			</line>
+			<line>
+				<reportElement x="652" y="183" width="156" height="1"/>
+			</line>
+			<rectangle>
+				<reportElement x="653" y="30" width="28" height="13"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="653" y="50" width="28" height="13"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="653" y="78" width="28" height="13"/>
+			</rectangle>
+			<textField>
+				<reportElement x="658" y="71" width="24" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{paketYes}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="653" y="100" width="28" height="13"/>
+			</rectangle>
+			<textField>
+				<reportElement x="657" y="98" width="25" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{paketReg}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="653" y="118" width="28" height="13"/>
+			</rectangle>
+			<textField>
+				<reportElement x="658" y="114" width="24" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{paketOK}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="809" y="-16" width="1" height="199"/>
+			</line>
+			<rectangle>
+				<reportElement x="653" y="145" width="28" height="13"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="653" y="159" width="28" height="13"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="702" y="145" width="100" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[International]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="159" width="100" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Others]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="652" y="183" width="156" height="55"/>
+			</rectangle>
+			<line>
+				<reportElement x="651" y="195" width="158" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="651" y="184" width="100" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Type of Goods]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="655" y="199" width="28" height="13"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="655" y="216" width="28" height="13"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="702" y="198" width="100" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Documebt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="216" width="100" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Parcels]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="652" y="238" width="156" height="35"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="230" y="152" width="28" height="13"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="230" y="170" width="28" height="13"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="276" y="151" width="35" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Cash]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="165" width="35" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[COD]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="230" y="152" width="28" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{cash}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="653" y="196" width="28" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokumen}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="657" y="216" width="23" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{barang}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="89" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="27" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

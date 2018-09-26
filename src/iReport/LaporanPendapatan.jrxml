@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanPendapatan" language="groovy" pageWidth="721" pageHeight="842" columnWidth="681" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="133"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tglAwal" class="java.lang.String"/>
+	<parameter name="tglAkhir" class="java.lang.String"/>
+	<parameter name="paramNoUrut" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new Integer("1")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     Pengirim.`Nama` AS Pengirim_Nama,
+     Pengiriman.`Nama` AS Pengiriman_Nama,
+     Pengiriman.`Alamat` AS Pengiriman_Alamat,
+     Pengiriman.`Harga` AS Pengiriman_Harga,
+     Pengiriman.`Berat` AS Pengiriman_Berat,
+     Pengiriman.`Packaging` AS Pengiriman_Packaging,
+     Pengiriman.`totalAsuransi` AS Pengiriman_totalAsuransi,
+     Pengiriman.`TglKirim` AS Pengiriman_TglKirim,
+     Pengiriman.`NoAWB` AS Pengiriman_NoAWB,
+     Pengiriman.`Paket` AS Pengiriman_Paket
+FROM
+     `Pengirim` Pengirim INNER JOIN `Pengiriman` Pengiriman ON Pengirim.`NoPengirim` = Pengiriman.`NoPengirim`
+WHERE
+ TglKirim BETWEEN $P{tglAwal} AND $P{tglAkhir}
+ORDER BY
+NoAWB]]>
+	</queryString>
+	<field name="Pengirim_Nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Alamat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Harga" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Berat" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Packaging" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_totalAsuransi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_TglKirim" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_NoAWB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Paket" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="harga" class="java.lang.Integer">
+		<variableExpression><![CDATA[($F{Pengiriman_Harga} * $F{Pengiriman_Berat}) + $F{Pengiriman_Packaging} + $F{Pengiriman_totalAsuransi}]]></variableExpression>
+	</variable>
+	<variable name="jumlah" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{harga}]]></variableExpression>
+	</variable>
+	<variable name="diskon" class="java.lang.Integer">
+		<variableExpression><![CDATA[$V{jumlah} * 0.20]]></variableExpression>
+	</variable>
+	<variable name="totalPendapatan" class="java.lang.Integer">
+		<variableExpression><![CDATA[$V{jumlah} - $V{diskon}]]></variableExpression>
+	</variable>
+	<variable name="noUrut" class="java.lang.Integer" resetType="None" calculation="Count">
+		<variableExpression><![CDATA[$V{noUrut}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="154" y="21" width="332" height="23" forecolor="#3333FF"/>
+				<textElement>
+					<font size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Pendapatan per Bulan]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="201" y="58" width="72" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tglAwal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="273" y="59" width="30" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[s / d]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="303" y="59" width="67" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tglAkhir}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="41" width="34" height="20" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="41" width="34" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="130" y="41" width="100" height="20" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="130" y="41" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Pengirim]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="230" y="41" width="100" height="20" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="230" y="41" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Penerima]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="30" y="41" width="100" height="20" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="30" y="41" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[No.AWB]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="557" y="41" width="100" height="20" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="557" y="41" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="330" y="41" width="100" height="20" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="330" y="41" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Paket]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="430" y="41" width="127" height="20" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="430" y="41" width="127" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tanggal Kirim]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="30" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="0" width="100" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="130" y="0" width="100" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="230" y="0" width="100" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="557" y="0" width="100" height="20"/>
+			</rectangle>
+			<textField>
+				<reportElement x="130" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_NoAWB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Nama}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="557" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{harga}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="330" y="0" width="100" height="20"/>
+			</rectangle>
+			<textField>
+				<reportElement x="330" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Paket}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="430" y="0" width="127" height="20"/>
+			</rectangle>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="430" y="0" width="127" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{Pengiriman_TglKirim}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="30" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($V{noUrut}.intValue()+$P{paramNoUrut}.intValue())]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="67" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="557" height="67"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="120" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="557" y="0" width="100" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="557" y="20" width="100" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="120" y="20" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Diskon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="40" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Total Harga]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="557" y="40" width="100" height="27"/>
+			</rectangle>
+			<textField pattern="¤ #,##0.00">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="557" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{jumlah}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="557" y="20" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{diskon}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="557" y="40" width="100" height="27"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalPendapatan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

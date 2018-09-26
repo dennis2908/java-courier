@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BPK" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="35"/>
+	<parameter name="ParamBPK" class="java.lang.String"/>
+	<parameter name="valueUrut" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new Integer("1")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     Pengirim.`Nama` AS Pengirim_Nama,
+     Pengiriman.`Nama` AS Pengiriman_Nama,
+     Pengiriman.`TglKirim` AS Pengiriman_TglKirim,
+     BPK.`NoAWB` AS BPK_NoAWB,
+     BarangBPK.`Jenis` AS BarangBPK_Jenis,
+     BarangBPK.`Merk` AS BarangBPK_Merk,
+     BarangBPK.`Acessoris` AS BarangBPK_Acessoris,
+     BarangBPK.`Pieces` AS BarangBPK_Pieces,
+     BarangBPK.`Seri` AS BarangBPK_Seri,
+     BarangBPK.`Imei` AS BarangBPK_Imei,
+     BarangBPK.`Warna` AS BarangBPK_Warna,
+     BarangBPK.`Kondisi` AS BarangBPK_Kondisi,
+     BPK.`TglBPK` AS BPK_TglBPK
+FROM
+     `Pengirim` Pengirim INNER JOIN `Pengiriman` Pengiriman ON Pengirim.`NoPengirim` = Pengiriman.`NoPengirim`
+     INNER JOIN `BAsuransi` BAsuransi ON Pengiriman.`NoAWB` = BAsuransi.`NoAWB`
+     INNER JOIN `BPK` BPK ON BAsuransi.`NoBA` = BPK.`NoBA`
+     INNER JOIN `BarangBPK` BarangBPK ON BPK.`NoBPK` = BarangBPK.`NoBPK`
+WHERE
+     BPK.NoBPK = $P{ParamBPK}]]>
+	</queryString>
+	<field name="Pengirim_Nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_TglKirim" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BPK_NoAWB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BarangBPK_Jenis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BarangBPK_Merk" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BarangBPK_Acessoris" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BarangBPK_Pieces" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BarangBPK_Seri" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BarangBPK_Imei" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BarangBPK_Warna" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BarangBPK_Kondisi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BPK_TglBPK" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="noUrut" class="java.lang.Integer" resetType="None" calculation="Count">
+		<variableExpression><![CDATA[$V{noUrut}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="34" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="57" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="800" height="57"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="313" y="37" width="167" height="20"/>
+				<textElement/>
+				<text><![CDATA[PT. JALUR NUGRAHA EKAKURIR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="0" width="305" height="20"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BUKTI PEMERIKSAAN ISI KIRIMAN]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="162" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="264" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="20" width="264" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="40" width="264" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="99" width="264" height="43"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="60" width="264" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="80" width="264" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="264" y="0" width="49" height="60"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="264" y="60" width="49" height="82"/>
+			</rectangle>
+			<line>
+				<reportElement x="100" y="20" width="60" height="1"/>
+			</line>
+			<line>
+				<reportElement x="100" y="80" width="49" height="1"/>
+			</line>
+			<line>
+				<reportElement x="264" y="20" width="49" height="1"/>
+			</line>
+			<rectangle>
+				<reportElement x="313" y="0" width="136" height="142"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="449" y="0" width="100" height="142"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="549" y="0" width="151" height="142"/>
+			</rectangle>
+			<line>
+				<reportElement x="313" y="21" width="487" height="1"/>
+			</line>
+			<line>
+				<reportElement x="264" y="40" width="185" height="1"/>
+			</line>
+			<line>
+				<reportElement x="313" y="60" width="136" height="1"/>
+			</line>
+			<line>
+				<reportElement x="313" y="81" width="136" height="1"/>
+			</line>
+			<line>
+				<reportElement x="313" y="99" width="136" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="2" width="62" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pengirim : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="62" height="20"/>
+				<textElement/>
+				<text><![CDATA[Penerima : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="2" width="49" height="20"/>
+				<textElement/>
+				<text><![CDATA[ORG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="41" width="49" height="20"/>
+				<textElement/>
+				<text><![CDATA[DEST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[          No.AWB : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tgl.Kirim : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="82" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Counter Cash : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[        Pengirim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="579" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Petugas Counter]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="104" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[TTD & Nama Jelas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="579" y="104" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[TTD & Nama Jelas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="62" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="62" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="20" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BPK_NoAWB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="449" y="42" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Nama}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="142" width="41" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="41" y="142" width="95" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="136" y="142" width="128" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="264" y="142" width="49" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="313" y="142" width="136" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="449" y="142" width="100" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="549" y="142" width="76" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="625" y="142" width="75" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="700" y="142" width="100" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="142" width="41" height="20"/>
+				<textElement/>
+				<text><![CDATA[      No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="142" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[     Jenis Kiriman]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="142" width="128" height="20"/>
+				<textElement/>
+				<text><![CDATA[            Merk / Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="142" width="49" height="20"/>
+				<textElement/>
+				<text><![CDATA[     Pcs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="142" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[             Serial No.*]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="142" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[            Imei No.**]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="549" y="142" width="76" height="20"/>
+				<textElement/>
+				<text><![CDATA[         Warna]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="625" y="142" width="75" height="20"/>
+				<textElement/>
+				<text><![CDATA[    Kondisi***]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="139" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[        Accessoris]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="700" y="21" width="100" height="121"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="702" y="102" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[TTD & Nama Jelas]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="700" y="0" width="100" height="21"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="700" y="0" width="100" height="22"/>
+				<textElement/>
+				<text><![CDATA[Petugas Pick Up]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="313" y="62" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{BPK_TglBPK}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="41" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="41" y="0" width="95" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="136" y="0" width="128" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="313" y="0" width="136" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="449" y="0" width="100" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="549" y="0" width="76" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="625" y="0" width="75" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="700" y="0" width="100" height="20"/>
+			</rectangle>
+			<textField>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="41" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($V{noUrut}.intValue()+$P{valueUrut}.intValue())]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="41" y="0" width="95" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BarangBPK_Jenis}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="136" y="0" width="128" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BarangBPK_Merk}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="313" y="0" width="136" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BarangBPK_Seri}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="549" y="0" width="76" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BarangBPK_Warna}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="625" y="0" width="75" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BarangBPK_Kondisi}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="700" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BarangBPK_Acessoris}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="264" y="0" width="49" height="20"/>
+			</rectangle>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="264" y="0" width="49" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{BarangBPK_Pieces}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="449" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BarangBPK_Imei}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="62" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BuktiAsuransi" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="104"/>
+	<parameter name="ParamAsuransi" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     Pengirim.`Nama` AS Pengirim_Nama,
+     Pengiriman.`Nama` AS Pengiriman_Nama,
+     Pengiriman.`Harga` AS Pengiriman_Harga,
+     Pengiriman.`TglKirim` AS Pengiriman_TglKirim,
+     Pengiriman.`Berat` AS Pengiriman_Berat,
+     Pengiriman.`AdminAsuransi` AS Pengiriman_AdminAsuransi,
+     Pengiriman.`totalAsuransi` AS Pengiriman_totalAsuransi,
+     Pengiriman.`Packaging` AS Pengiriman_Packaging,
+     BAsuransi.`NoBA` AS BAsuransi_NoBA,
+     BAsuransi.`TglBA` AS BAsuransi_TglBA,
+     BAsuransi.`NoAWB` AS BAsuransi_NoAWB,
+     Pengiriman.`NamaBarang` AS Pengiriman_NamaBarang
+FROM
+     `Pengirim` Pengirim INNER JOIN `Pengiriman` Pengiriman ON Pengirim.`NoPengirim` = Pengiriman.`NoPengirim`
+     LEFT OUTER JOIN `BAsuransi` BAsuransi ON Pengiriman.`NoAWB` = BAsuransi.`NoAWB`
+WHERE
+     NoBA = $P{ParamAsuransi}]]>
+	</queryString>
+	<field name="Pengirim_Nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Harga" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_TglKirim" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Berat" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_AdminAsuransi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_totalAsuransi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Packaging" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BAsuransi_NoBA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BAsuransi_TglBA" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BAsuransi_NoAWB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_NamaBarang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="totalKirim" class="java.lang.Integer">
+		<variableExpression><![CDATA[($F{Pengiriman_Harga} * $F{Pengiriman_Berat}) + $F{Pengiriman_totalAsuransi} + $F{Pengiriman_Packaging}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="283" y="22" width="260" height="20"/>
+				<textElement/>
+				<text><![CDATA[BUKTI PENERIMAAN PEMBAYARAN ASURANSI]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="50">
+			<rectangle>
+				<reportElement x="-1" y="30" width="100" height="20" forecolor="#FFFFFF" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="30" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[NO. AWB]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="99" y="30" width="100" height="20" forecolor="#FFFFFF" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="99" y="30" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[TGL Kirim ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="199" y="30" width="155" height="20" forecolor="#FFFFFF" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="199" y="30" width="155" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ISI MENURUT PENGAKUAN ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="354" y="30" width="100" height="20" forecolor="#FFFFFF" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="354" y="30" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ONGKOS KIRIM]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="454" y="30" width="100" height="20" forecolor="#FFFFFF" backcolor="#00CCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="454" y="30" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[PREMI ASURANSI]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="213" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="475" y="104" width="139" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[BUKIT CIRENDEU TGL :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="193" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[(PENYETOR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="193" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[(PENERIMA)]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="354" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalKirim}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="199" y="0" width="155" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_NamaBarang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BAsuransi_NoAWB}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="-1" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{Pengiriman_TglKirim}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement positionType="Float" x="614" y="104" width="100" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{BAsuransi_TglBA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="454" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Pengiriman_totalAsuransi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

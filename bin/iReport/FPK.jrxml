@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FPK" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="551"/>
+	<parameter name="ParamFPK" class="java.lang.String"/>
+	<parameter name="Terbilang" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     Pengirim.`Nama` AS Pengirim_Nama,
+     Pengirim.`Alamat` AS Pengirim_Alamat,
+     Pengiriman.`NoAWB` AS Pengiriman_NoAWB,
+     Pengiriman.`Nama` AS Pengiriman_Nama,
+     Pengiriman.`Alamat` AS Pengiriman_Alamat,
+     Pengiriman.`Pembayaran` AS Pengiriman_Pembayaran,
+     Pengiriman.`TglKirim` AS Pengiriman_TglKirim,
+     FPK.`NoFPK` AS FPK_NoFPK,
+     FPK.`NoKTP` AS FPK_NoKTP,
+     FPK.`NoAWB` AS FPK_NoAWB,
+     FPK.`TglFPK` AS FPK_TglFPK,
+     FPK.`Keterangan` AS FPK_Keterangan,
+     FPK.`Klaim` AS FPK_Klaim,
+     FPK.`Pembayaran` AS FPK_Pembayaran,
+     FPK.`Bank` AS FPK_Bank,
+     FPK.`Cabang` AS FPK_Cabang,
+     FPK.`NoRekening` AS FPK_NoRekening,
+     FPK.`AtasNama` AS FPK_AtasNama,
+     Pengiriman.`Paket` AS Pengiriman_Paket,
+     Pengirim.`Telepon` AS Pengirim_Telepon,
+     Pengirim.`NoPengirim` AS Pengirim_NoPengirim,
+     FPK.`NoPengirim` AS FPK_NoPengirim
+FROM
+     `Pengirim` Pengirim INNER JOIN `Pengiriman` Pengiriman ON Pengirim.`NoPengirim` = Pengiriman.`NoPengirim`
+     INNER JOIN `FPK` FPK ON Pengiriman.`NoAWB` = FPK.`NoAWB`
+     AND Pengirim.`NoPengirim` = FPK.`NoPengirim`
+WHERE
+     NoFPK = $P{ParamFPK}]]>
+	</queryString>
+	<field name="Pengirim_Nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengirim_Alamat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_NoAWB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Alamat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Pembayaran" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_TglKirim" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_NoFPK" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_NoKTP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_NoAWB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_TglFPK" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_Keterangan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_Klaim" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_Pembayaran" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_Bank" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_Cabang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_NoRekening" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_AtasNama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengiriman_Paket" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengirim_Telepon" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pengirim_NoPengirim" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FPK_NoPengirim" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="Terbilang" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="99" splitType="Stretch">
+			<image>
+				<reportElement x="173" y="0" width="241" height="89"/>
+				<imageExpression class="java.lang.String"><![CDATA["/home/lubuntu/workspace/Aplikasi JNE/src/GambarApp/JNE1.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="198" y="10" width="199" height="20"/>
+				<textElement>
+					<font size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[FORM PENGAJUAN KLAIM]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="601" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="10" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tangerang, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="30" width="100" height="15"/>
+				<textElement/>
+				<text><![CDATA[Kepada Yth                                             ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="45" width="71" height="20"/>
+				<textElement/>
+				<text><![CDATA[PT.TIKI JNE   			]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="65" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tangerang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="85" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Dengan hormat,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="115" width="199" height="20"/>
+				<textElement/>
+				<text><![CDATA[Saya yang bertanda tangan dibawah ini  : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="135" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nama  : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="135" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Nama}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="155" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Alamat : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="175" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Telp : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="155" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="175" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengirim_Telepon}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="195" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[No.KTP/SIM :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="195" width="100" height="24"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FPK_NoKTP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="215" width="367" height="20"/>
+				<textElement/>
+				<text><![CDATA[Telah melakukan pengiriman dengan data-data sebagai berikut :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="235" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[No.AWB : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="255" width="125" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tanggal Pengiriman :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="275" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Penerima : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="295" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tujuan : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="315" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pembayaran : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="335" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Service : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="355" width="135" height="20"/>
+				<textElement/>
+				<text><![CDATA[Bahwa Kiriman Tersebut : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="275" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="295" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="315" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Pembayaran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="335" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pengiriman_Paket}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="355" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FPK_Keterangan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="375" width="314" height="20"/>
+				<textElement/>
+				<text><![CDATA[Oleh karena itu saya mengajukan klaim ganti rugi sebesar : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="395" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Terbilang : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="415" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pembayaran : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="435" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nama Bank : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="455" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Cabang : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="475" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[No.Rek : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="495" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Atas Nama : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="527" width="414" height="20"/>
+				<textElement/>
+				<text><![CDATA[ Demikian surat pengajuan ini disampaikan agar menjadi bahan pertimbangan dalam proses]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="547" width="463" height="20"/>
+				<textElement/>
+				<text><![CDATA[penyelesaian ganti rugi sesuai dengan ketentuan persyaratan pengiriman JNE.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="567" width="344" height="20"/>
+				<textElement/>
+				<text><![CDATA[Atas perhatian dan kerjasamanya kami ucapkan terima kasih]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="415" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FPK_Pembayaran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="435" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FPK_Bank}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="455" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FPK_Cabang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="495" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FPK_AtasNama}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="74" y="10" width="99" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{FPK_TglFPK}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="138" y="255" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{Pengiriman_TglKirim}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="235" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FPK_NoAWB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="395" width="389" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{Terbilang}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="327" y="375" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{FPK_Klaim}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="475" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FPK_NoRekening}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Hormat Saya]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="47" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[    ..............]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
